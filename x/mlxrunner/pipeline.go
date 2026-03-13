@@ -48,9 +48,10 @@ func (r *Runner) TextGenerationPipeline(request Request) error {
 		mlx.Sweep()
 		mlx.ClearCache()
 
+		r.cache.dumpTree()
+
 		if slog.Default().Enabled(context.TODO(), logutil.LevelTrace) {
 			mlx.LogArrays()
-			r.cache.dumpTree()
 		}
 		slog.Info("peak memory", "size", mlx.PrettyBytes(mlx.PeakMemory()))
 	}()

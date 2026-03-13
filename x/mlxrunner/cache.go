@@ -587,13 +587,13 @@ func (c *kvCache) dumpTree() {
 	dump(c.root, "", true)
 
 	offset := c.minCacheOffset()
-	logutil.Trace(fmt.Sprintf("kv cache active_tokens: %d, active_size: %s, paged_out: %s, trie: nodes=%d, snapshots=%d",
+	slog.Debug(fmt.Sprintf("kv cache active_tokens: %d, active_size: %s, paged_out: %s, trie: nodes=%d, snapshots=%d",
 		offset, mlx.PrettyBytes(cacheBytes), mlx.PrettyBytes(int(pagedBytes)), nodeCount, snapshotCount))
 	for i, l := range lines {
 		if i == 0 {
-			logutil.Trace("cache trie: " + l)
+			slog.Debug("cache trie: " + l)
 		} else {
-			logutil.Trace("  " + l)
+			slog.Debug("  " + l)
 		}
 	}
 }
